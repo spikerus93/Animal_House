@@ -37,3 +37,8 @@
 ![image_9](/images/image_9.PNG)
 8. Создать таблицы с иерархией из диаграммы в БД
 ![image_10](/images/image_10.PNG)
+![image_11](/images/image_11.PNG)
+![image_12](/images/image_12.PNG)
+![image_13](/images/image_13.PNG)
+9. Заполнить низкоуровневые таблицы именами(животных), командами
+которые они выполняют и датами рождения
