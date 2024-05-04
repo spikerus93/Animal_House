@@ -42,3 +42,9 @@
 ![image_13](/images/image_13.PNG)
 9. Заполнить низкоуровневые таблицы именами(животных), командами
 которые они выполняют и датами рождения
+![image_14](/images/image_14.PNG)
+![image_15](/images/image_15.PNG)
+![image_16](/images/image_16.PNG)
+![image_17](/images/image_17.PNG)
+![image_18](/images/image_18.PNG)
+![image_19](/images/image_19.PNG)
