@@ -1,5 +1,8 @@
 package ru.gb.Animal_House.model.animal.tree;
 
+import ru.gb.Animal_House.model.animal.tree.comparators.AnimalComparatorByBirthDate;
+import ru.gb.Animal_House.model.animal.tree.comparators.AnimalComparatorByName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
