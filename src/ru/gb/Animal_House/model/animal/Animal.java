@@ -5,35 +5,65 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.gb.Animal_House.model.animal.AnimalClass.*;
+
 public class Animal {
-    private long id;
     private Animal animal;
+    private long id;
     private String name;
     private AnimalClass animalClass;
+    private Animal homeAnimal;
+    private Animal packAnimal;
     private LocalDate birthDate;
     private LocalDate deathDate;
-    private List<Animal> animalList;
+    private List<Animal> AnimalList;
 
-    public Animal (String name, AnimalClass animalClass, LocalDate birthDate,
-                   LocalDate deathDate, Animal mother, Animal father){
-        id = -1;
-        this.name = name;
+    public Animal(){};
+
+    public void setAnimalClass(AnimalClass animalClass) {
         this.animalClass = animalClass;
+    }
+
+    public Animal (AnimalClass animalClass, String name, LocalDate birthDate, LocalDate deathDate, Animal homeAnimal, Animal packAnimal){
+        id = -1;
+        this.animal = new Animal();
+        this.animalClass = animalClass;
+        this.name = name;
         this.birthDate = birthDate;
         this. deathDate = deathDate;
-        animalList = new ArrayList<>();
+        this.homeAnimal = homeAnimal;
+        this.packAnimal = packAnimal;
+        AnimalList = new ArrayList<>();
     }
 
     public boolean addAnimal (Animal animal) {
-        if (!animal.contains((animal))) {
-            animal.add(animal);
-            return true;
+        if (animal.getAnimalClass().equals(AnimalClass.Home)) {
+            setHomeAnimal(animal);
+        } else if (animal.getAnimalClass().equals(AnimalClass.Farm)) {
+            setPackAnimal(animal);
         }
-        return false;
+        return true;
     }
 
-    public void setClass (Animal animal) {
-        this. animalClass = animalClass;
+    public void setHomeAnimal(Animal homeAnimal) {
+        this.homeAnimal = homeAnimal;
+    }
+
+    public void setPackAnimal(Animal packAnimal) {
+        this.packAnimal = packAnimal;
+    }
+
+    public AnimalClass getAnimalClass() {
+        return animalClass;
+    }
+
+    public boolean setClass (AnimalClass animalClass) {
+        if (animal.getAnimalClass().equals(Home)) {
+            setHomeAnimal(animal);
+        } else if (animal.getAnimalClass().equals(Farm)) {
+            setPackAnimal(animal);
+        }
+        return true;
     }
 
     public void setName(String name) {
@@ -41,13 +71,13 @@ public class Animal {
     }
 
     public List<Animal> getAnimalList() {
-        List<Animal>  listAnimal = new ArrayList<>();
-        if (animal.setClass().equals(animalClass.Home)){
-            setClass(HomeAnimal);
-        } else if (animal.setClass().equals(animalClass.Farm)) {
-            setClass(PackAnimal);
+        List<Animal>  AnimalList = new ArrayList<>();
+        if (animal.setClass(Home)){
+            setHomeAnimal(homeAnimal);
+        } else if (animal.setClass(Home)) {
+            setPackAnimal(packAnimal);
         }
-        return listAnimal;
+        return AnimalList;
     }
 
     public int getAge() {
@@ -83,10 +113,6 @@ public class Animal {
         return deathDate;
     }
 
-    public List<Animal> = getAnimalList() {
-        return animalList;
-    }
-
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
@@ -94,7 +120,30 @@ public class Animal {
         this.deathDate = deathDate;
     }
 
-    public AnimalClass getAnimalClass() {
-        return animalClass;
+
+    @Override public String toString() {
+        return getInfo();
+    }
+
+    public String getInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("id: ");
+        sb.append(id);
+        sb.append(" кличка: ");
+        sb.append(name);
+        sb.append(" класс: ");
+        sb.append(addAnimal(animal));
+        sb.append(getAge());
+        sb.append(".");
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Animal)){
+            return false;
+        }
+        Animal animal = (Animal) object;
+        return animal.getId() == getId();
     }
 }
