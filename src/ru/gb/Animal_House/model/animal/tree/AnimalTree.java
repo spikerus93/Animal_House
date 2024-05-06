@@ -1,10 +1,11 @@
-package ru.gb.Animal_House.model.animal.tree.comparators;
+package ru.gb.Animal_House.model.animal.tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
-public class AnimalTree {
+public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable<E> {
     private long memberId;
     private List<E> animalList;
     public AnimalTree() {
@@ -29,7 +30,7 @@ public class AnimalTree {
     public List<E> getByName(String name) {
         List<E> res = new ArrayList<>();
         for (E animal: animalList) {
-            if (animal.getName()).equals(name)) {
+            if (animal.getName().equals(name)) {
                 res.add(animal);
             }
         }
@@ -65,5 +66,10 @@ public class AnimalTree {
 
     public void sortByBirthDate() {
         animalList.sort(new AnimalComparatorByBirthDate());
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new AnimalIterator<>(animalList);
     }
 }
