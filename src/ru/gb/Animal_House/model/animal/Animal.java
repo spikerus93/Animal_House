@@ -1,5 +1,7 @@
 package ru.gb.Animal_House.model.animal;
 
+import ru.gb.Animal_House.model.animal.tree.TreeNode;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 
 import static ru.gb.Animal_House.model.animal.AnimalClass.*;
 
-public class Animal {
+public class Animal implements TreeNode {
     private Animal animal;
     private long id;
     private String name;

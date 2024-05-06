@@ -10,9 +10,9 @@ import ru.gb.Animal_House.model.animal.packAnimal.Horse;
 
 import java.time.LocalDate;
 
-public class Animalbuilder {
+public class AnimalBuilder {
 
-    public Animal builder(int type, String name, LocalDate birthDate) {
+    public Animal build(int type, String name, LocalDate birthDate) {
         switch (type) {
             case 1 -> {
                 return new Dog(name, birthDate);

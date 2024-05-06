@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface TreeNode<T> extends Serializable {
+public interface TreeNode extends Serializable {
     void setId(long id);
     long getId();
-    T homeAnimal();
-    T packAnimal();
     String getName();
     LocalDate getBirthDate();
     LocalDate getDeathDate();
     String getCommands();
     String getAnimalClass();
-    List<T> getAnimalList();
 }

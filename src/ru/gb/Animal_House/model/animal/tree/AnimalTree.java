@@ -8,28 +8,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable<E> {
+public class AnimalTree<E extends TreeNode> implements Serializable, Iterable<E> {
     private long memberId = 1;
     private int counter = 0;
     private List<E> animalList;
     public AnimalTree() {
-        this(new ArrayList<>());
+        animalList = new ArrayList<>();
     }
+
     public AnimalTree(List<E> animalList) {
         this.animalList = animalList;
     }
 
-    public boolean add(E animal) {
-        if (animal == null) {
-            return false;
-        }
-        if (!animalList.contains(animal)) {
-            animalList.add(animal);
+    public void add(E animal) {
             animal.setId(memberId++);
+            animalList.add(animal);
             counter++;
-            return true;
-        }
-        return false;
     }
 
     public int getCounter() {
