@@ -9,7 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable<E> {
-    private long memberId;
+    private long memberId = 1;
+    private int counter = 0;
     private List<E> animalList;
     public AnimalTree() {
         this(new ArrayList<>());
@@ -25,9 +26,14 @@ public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable
         if (!animalList.contains(animal)) {
             animalList.add(animal);
             animal.setId(memberId++);
+            counter++;
             return true;
         }
         return false;
+    }
+
+    public int getCounter() {
+        return counter;
     }
 
     public List<E> getByName(String name) {

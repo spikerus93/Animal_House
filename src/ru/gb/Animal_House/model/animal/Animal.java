@@ -16,7 +16,8 @@ public class Animal {
     private Animal packAnimal;
     private LocalDate birthDate;
     private LocalDate deathDate;
-    private List<Animal> AnimalList;
+    private List<Animal> animalList;
+    private List<String> commands;
 
     public Animal(){};
 
@@ -33,7 +34,7 @@ public class Animal {
         this. deathDate = deathDate;
         this.homeAnimal = homeAnimal;
         this.packAnimal = packAnimal;
-        AnimalList = new ArrayList<>();
+        animalList = new ArrayList<>();
     }
 
     public boolean addAnimal (Animal animal) {
@@ -78,6 +79,15 @@ public class Animal {
             setPackAnimal(packAnimal);
         }
         return AnimalList;
+    }
+
+    public String getCommands() {
+        if (!(this.commands).isEmpty()) {
+            StringBuilder sb = new StringBuilder("Команды: ");
+            sb.append(this.commands);
+            return sb.toString();
+        }
+        return null;
     }
 
     public int getAge() {
@@ -131,8 +141,11 @@ public class Animal {
         sb.append(id);
         sb.append(" кличка: ");
         sb.append(name);
+        sb.append(" дата рождения: ");
+        sb.append(getBirthDate());
         sb.append(" класс: ");
         sb.append(addAnimal(animal));
+        sb.append(" возраст: ");
         sb.append(getAge());
         sb.append(".");
         return sb.toString();

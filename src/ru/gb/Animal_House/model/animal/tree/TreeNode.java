@@ -12,5 +12,7 @@ public interface TreeNode<T> extends Serializable {
     String getName();
     LocalDate getBirthDate();
     LocalDate getDeathDate();
+    String getCommands();
+    String getAnimalClass();
     List<T> getAnimalList();
 }
