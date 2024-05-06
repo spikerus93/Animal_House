@@ -22,10 +22,9 @@ public class Animal {
 
     public Animal(){};
 
-    public Animal(String name, LocalDate birthDate, LocalDate deathDate) {
+    public Animal(String name, LocalDate birthDate) {
         this.name = name;
         this.birthDate = birthDate;
-        this.deathDate = deathDate;
         this.type = "Животное";
     }
 
