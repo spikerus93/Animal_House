@@ -49,6 +49,7 @@ public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable
     public boolean remove(long animalId){
         if (checkId(animalId)) {
             E element = getById(animalId);
+            counter--;
             return animalList.remove(element);
         }
         return false;
@@ -75,6 +76,14 @@ public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable
 
     public void sortByBirthDate() {
         animalList.sort(new AnimalComparatorByBirthDate());
+    }
+
+    public String getAnimalList() {
+        StringBuilder sb = new StringBuilder();
+        for (E animal: animalList) {
+            sb.append(animal);
+        }
+        return sb.toString();
     }
 
     @Override
