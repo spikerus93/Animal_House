@@ -12,6 +12,7 @@ public class Animal {
     private long id;
     private String name;
     private AnimalClass animalClass;
+    public String type;
     private Animal homeAnimal;
     private Animal packAnimal;
     private LocalDate birthDate;
@@ -20,6 +21,13 @@ public class Animal {
     private List<String> commands;
 
     public Animal(){};
+
+    public Animal(String name, LocalDate birthDate, LocalDate deathDate) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.deathDate = deathDate;
+        this.type = "Животное";
+    }
 
     public void setAnimalClass(AnimalClass animalClass) {
         this.animalClass = animalClass;
