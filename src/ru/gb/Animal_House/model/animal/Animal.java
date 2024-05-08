@@ -10,7 +10,7 @@ public class Animal implements TreeNode {
     private Animal animal;
     private long id;
     private String name;
-    private String animalClass;
+    public String animalClass;
     private LocalDate birthDate;
     private List<String> commands;
 
@@ -20,8 +20,19 @@ public class Animal implements TreeNode {
         this.animalClass = animalClass;
     }
 
-    public Animal (String animalClass, String name, LocalDate birthDate
-            , LocalDate deathDate, Animal homeAnimal, Animal packAnimal){
+    @Override
+    public String getAnimalClass() {
+        return animalClass;
+    }
+
+    public Animal(String name, LocalDate birthDate) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.animalClass = "Животное";
+        this.commands = new ArrayList<>();
+    }
+
+    public Animal (String animalClass, String name, LocalDate birthDate){
         id = -1;
         this.animal = new Animal();
         this.animalClass = animalClass;
@@ -41,11 +52,6 @@ public class Animal implements TreeNode {
             return sb.toString();
         }
         return null;
-    }
-
-    @Override
-    public String getAnimalClass() {
-        return animalClass;
     }
 
     public String getName() {
