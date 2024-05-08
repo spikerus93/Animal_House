@@ -67,11 +67,15 @@ public class ConsoleUI implements View{
         System.out.println("Добро Пожаловать!!!");
     }
 
-    private void choice() {
+    private void choice() throws IOException {
         String value = scanner.nextLine();
         if (checkMenu(value)) {
             int num = Integer.parseInt(value);
-            menu.execute(num);
+            try {
+                menu.execute(num);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
         }
     }
