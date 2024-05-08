@@ -110,6 +110,11 @@ public class ConsoleUI implements View{
         return value;
     }
 
+    public void chooseAnimalClass() {
+
+
+    }
+
     private int checkAnimalClass() {
         int value = 0;
         boolean i = true;
@@ -138,6 +143,10 @@ public class ConsoleUI implements View{
             }
         }
         return id;
+    }
+
+    public void addAnimal() {
+        System.out.println("Выберите тип животного: ");
     }
 
     public void addCommand() {

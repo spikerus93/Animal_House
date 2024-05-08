@@ -2,6 +2,8 @@ package ru.gb.Animal_House.view.commands;
 
 import ru.gb.Animal_House.view.ConsoleUI;
 
+import java.io.IOException;
+
 public abstract class Command {
 
     String description;
@@ -16,6 +18,6 @@ public abstract class Command {
         return description;
     }
 
-    public abstract void execute();
+    public abstract void execute() throws IOException;
 
 }
