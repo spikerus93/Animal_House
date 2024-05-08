@@ -10,6 +10,6 @@ public class AddAnimal extends Command{
 
     @Override
     public void execute() {
-        consoleUI.addAnimal
+        consoleUI.addAnimal();
     }
 }
