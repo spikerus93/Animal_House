@@ -1,7 +1,9 @@
 package ru.gb.Animal_House.view;
 
+import ru.gb.Animal_House.model.animal.writer.Writer;
 import ru.gb.Animal_House.presenter.Presenter;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ConsoleUI implements View{
@@ -22,6 +24,43 @@ public class ConsoleUI implements View{
         menu = new MainMenu(this);
     }
 
+    public void setWriter(Writer writer) {
+        presenter.setWriter(writer);
+    }
+
+    public void save() {
+        if (presenter.save()) {
+            success();
+        } else {
+            error();
+        }
+    }
+
+    public void load() throws IOException {
+        try {
+            presenter.load();
+            download();
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void download() {
+        System.out.println("Данные успешно загружены.");
+    }
+
+    private void error() {
+        System.out.println("Ошибка. Данные не сохранены!");
+    }
+
+    private void success() {
+        System.out.println("Данные сохранены.");
+    }
+
+    public void counter() {
+        System.out.println("В питомники:" + Integer.toString(presenter.counter()));
+    }
+
     private void hello() {
         System.out.println("Добро Пожаловать!!!");
     }
@@ -30,6 +69,7 @@ public class ConsoleUI implements View{
         String value = scanner.nextLine();
         if (checkMenu(value)) {
             int num = Integer.parseInt(value);
+            menu.execute(num);
 
         }
     }
@@ -44,6 +84,92 @@ public class ConsoleUI implements View{
         }
         System.out.println("Вы ввели неверное значение.");
         return false;
+    }
+
+    public void finish() {
+        System.out.println("Всего Вам доброго!!!");
+    }
+
+    private void printmenu() {
+        System.out.println("Выберите действие: ");
+        System.out.println(menu.menu());
+    }
+
+    private int checkInt() {
+        int value = 0;
+        boolean i = true;
+        while (i) {
+            String text = scanner.nextLine();
+            if (text.matches("[0-9]+")) {
+                value = Integer.parseInt(text);
+                i = false;
+            } else {
+                System.out.println("Вы ввели неверное значение. \n Введите цифру от 1 до 9");
+            }
+        }
+        return value;
+    }
+
+    private int checkAnimalClass() {
+        int value = 0;
+        boolean i = true;
+        while (i) {
+            String text = scanner.nextLine();
+            if (text.matches( "[0-6]")) {
+                value = Integer.parseInt(text);
+                i = false;
+            } else {
+                System.out.println("Вы ввели неверное значение. \n Выберите цифры от 1 до 6");
+            }
+        }
+        return value;
+    }
+
+    private int checkId() {
+        boolean i = true;
+        int id = 0;
+        while (i) {
+            id = checkInt();
+            if (presenter.checkId(id)) {
+                i = false;
+                return id;
+            } else {
+                System.out.println("Заданный id не найден. \n Введите новое значение.");
+            }
+        }
+        return id;
+    }
+
+    public void addCommand() {
+        System.out.println("Введите ID: ");
+        int id = checkId();
+        System.out.println("Добавьте новую команду: ");
+        String command = scanner.nextLine();
+        presenter.addCommand(id, command);
+    }
+
+    public void seeCommands() {
+        System.out.println("Введите id: ");
+        int id = checkId();
+        presenter.seeCommands(id);
+    }
+
+    public void sortByName() {
+        presenter.sortByName();
+    }
+
+    public void sortByBirthDate() {
+        presenter.sortByBirthDate();
+    }
+
+    public void remove() {
+        System.out.println("Введите ID: ");
+        int id = checkId();
+        if (presenter.remove(id)) {
+            success();
+        } else {
+            error();
+        }
     }
 
     @Override
