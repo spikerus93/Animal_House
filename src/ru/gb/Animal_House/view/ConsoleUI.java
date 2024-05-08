@@ -4,6 +4,8 @@ import ru.gb.Animal_House.model.animal.writer.Writer;
 import ru.gb.Animal_House.presenter.Presenter;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ConsoleUI implements View{
@@ -110,11 +112,6 @@ public class ConsoleUI implements View{
         return value;
     }
 
-    public void chooseAnimalClass() {
-
-
-    }
-
     private int checkAnimalClass() {
         int value = 0;
         boolean i = true;
@@ -146,7 +143,25 @@ public class ConsoleUI implements View{
     }
 
     public void addAnimal() {
-        System.out.println("Выберите тип животного: ");
+        System.out.println("Выберите тип животного: \n 1 - Собака \n 2 - Кошка" +
+                " \n 3 - Хомяк \n 4 - Лошадь \5 - Верблюд \6 - Осел");
+        int animalClass = checkAnimalClass();
+        System.out.println("Введите кличку: ");
+        String name = scanner.nextLine();
+        System.out.println("Введите год рождения: ");
+        int year = checkInt();
+        System.out.println("Введите месяц рождения: ");
+        int month = checkInt();
+        System.out.println("Введите день рождения: ");
+        int day = checkInt();
+        LocalDate birthDate = null;
+        if (presenter.dateValid(year, month, day)) {
+            birthDate = presenter.setBirthDate(year, month, day);
+        } else {
+            System.out.println("Неверный формат даты.");
+            error();
+        }
+        presenter.addAnimal(animalClass, name, birthDate);
     }
 
     public void addCommand() {
