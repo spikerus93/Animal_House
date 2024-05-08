@@ -26,6 +26,23 @@ public class AnimalTree<E extends TreeNode> implements Serializable, Iterable<E>
             counter++;
     }
 
+    public String addCommands(int memberId) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("id: ");
+        sb.append(memberId);
+        E animal = getById(memberId);
+        if (animal != null) {
+            sb.append("Кличка: ");
+            sb.append(animal.getName());
+            sb.append("Тип: ");
+            sb.append(animal.getAnimalClass());
+            sb.append("Команды: ");
+            sb.append(animal.getCommands());
+            return sb.toString();
+        }
+        return "Данные отсутствуют";
+    }
+
     public int getCounter() {
         return counter;
     }
