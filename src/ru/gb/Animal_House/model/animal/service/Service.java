@@ -23,8 +23,16 @@ public class Service {
         this.writer = writer;
     }
 
+    public boolean save() {
+        return writer.write(animalTree, "AnimalHouse.out");
+    }
+
     public void load() throws IOException {
         animalTree = (AnimalTree) writer.restore("Animal_House.out");
+    }
+
+    public int counter() {
+        return animalTree.getCounter();
     }
 
     public Animal addAnimal(int type, String name, LocalDate birthDate) {
@@ -33,8 +41,34 @@ public class Service {
         return animal;
     }
 
+    public void addCommand(int id, String command) {
+        Animal animal = (Animal) animalTree.getById(id);
+        animal.setCommands(command);
+    }
+
     public boolean checkId(int id) {
         Animal animal = (Animal) animalTree.getById(id);
         return animal != null;
+    }
+
+    public void sortByName() {
+        animalTree.sortByName();
+    }
+
+    public void sortByBirthDate() {
+        animalTree.sortByBirthDate();
+    }
+
+    public String getAnimalList() {
+        return animalTree.getAnimalList();
+    }
+
+    public boolean remove(int id) {
+        Animal animal = (Animal) animalTree.getById(id);
+        if (animal != null) {
+            animalTree.remove(id);
+            return  true;
+        }
+        return false;
     }
 }

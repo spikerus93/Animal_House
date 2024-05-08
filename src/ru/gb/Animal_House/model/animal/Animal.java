@@ -45,6 +45,10 @@ public class Animal implements TreeNode {
         this.name = name;
     }
 
+    public void setCommands(String command) {
+        this.commands.add(command);
+    }
+
     public String getCommands() {
         if (!(this.commands).isEmpty()) {
             StringBuilder sb = new StringBuilder("Команды: ");
