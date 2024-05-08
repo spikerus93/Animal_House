@@ -26,7 +26,7 @@ public class AnimalTree<E extends TreeNode> implements Serializable, Iterable<E>
             counter++;
     }
 
-    public String addCommands(int memberId) {
+    public String seeCommands(int memberId) {
         StringBuilder sb = new StringBuilder();
         sb.append("id: ");
         sb.append(memberId);

@@ -12,8 +12,8 @@ import java.time.LocalDate;
 
 public class AnimalBuilder {
 
-    public Animal build(int type, String name, LocalDate birthDate) {
-        switch (type) {
+    public Animal build(int animalClass, String name, LocalDate birthDate) {
+        switch (animalClass) {
             case 1 -> {
                 return new Dog(name, birthDate);
             }
