@@ -146,7 +146,7 @@ public class ConsoleUI implements View{
 
     public void addAnimal() {
         System.out.println("Выберите тип животного: \n 1 - Собака \n 2 - Кошка" +
-                " \n 3 - Хомяк \n 4 - Лошадь \5 - Верблюд \6 - Осел");
+                " \n 3 - Хомяк \n 4 - Лошадь \n 5 - Верблюд \n 6 - Осел");
         int animalClass = checkAnimalClass();
         System.out.println("Введите кличку: ");
         String name = scanner.nextLine();
