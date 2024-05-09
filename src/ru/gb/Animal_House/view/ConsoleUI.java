@@ -5,7 +5,6 @@ import ru.gb.Animal_House.presenter.Presenter;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class ConsoleUI implements View{
@@ -67,7 +66,7 @@ public class ConsoleUI implements View{
         System.out.println("Добро Пожаловать!!!");
     }
 
-    private void choice() throws IOException {
+    private void choice() throws RuntimeException{
         String value = scanner.nextLine();
         if (checkMenu(value)) {
             int num = Integer.parseInt(value);
@@ -76,7 +75,6 @@ public class ConsoleUI implements View{
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         }
     }
 
@@ -202,10 +200,14 @@ public class ConsoleUI implements View{
 
     @Override
     public void start() {
+        hello();
+        while (work) {
+            printmenu();
+            choice();
+        }
     }
 
     @Override
     public void printAnswer(String answer) {
-
     }
 }
