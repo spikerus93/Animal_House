@@ -64,3 +64,7 @@
 ![image_22](/images/image_22.PNG)
 ![image_23](/images/image_23.PNG)
 ![image_24](/images/image_24.PNG)
+
+12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
+    прошлую принадлежность к старым таблицам
+![image_25](/images/image_25.PNG)
