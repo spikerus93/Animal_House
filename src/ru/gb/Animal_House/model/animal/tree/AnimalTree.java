@@ -112,7 +112,7 @@ public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable
             sb.append("Дата рождения: ").append(animal.getBirthDate() + "\n");
         }
         if (animal.getCommands() != null) {
-            sb.append(animal.getCommands() + "n");
+            sb.append(animal.getCommands() + "\n");
             return sb.toString();
         }
         return "Данных нет.";
