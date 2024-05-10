@@ -15,11 +15,11 @@
 ![выполнение заданий 1 и 2](/images/image_1.png)
 
 3. Подключить дополнительный репозиторий MySQL.
-![image_2](/images/image_2.png)
+![image_2](/images/image_2.PNG)
 
 4. Установить и удалить deb-пакет с помощью dpkg.
-![image_3](images\image_3.PNG)
-![image_4](images\image_4.PNG)
+![image_3](/images/image_3.PNG)
+![image_4](/images/image_4.PNG)
 ![image_5](/images/image_5.PNG)
 
 5. Выложить историю команд в терминале ubuntu
@@ -118,6 +118,6 @@
 !Загрузка данных выполнена в действии №10.
 
 11)удаляет сведения о животном из реестра.
-![image_40](/images/image_40)
+![image_40](/images/image_40.png)
 
 12)Программа выполняет безопасное завершение работы.
