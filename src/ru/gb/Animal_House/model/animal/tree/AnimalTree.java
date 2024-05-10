@@ -8,97 +8,120 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class AnimalTree<E extends TreeNode> implements Serializable, Iterable<E> {
-    private long memberId = 1;
+public class AnimalTree<E extends TreeNode<E>> implements Serializable, Iterable<E> {
+    private int memberId = 1;
     private int counter = 0;
     private List<E> animalList;
     public AnimalTree() {
         animalList = new ArrayList<>();
     }
 
-    public AnimalTree(List<E> animalList) {
-        this.animalList = animalList;
-    }
-
     public void add(E animal) {
-            animal.setId(memberId++);
+        if (!animalList.contains(animal)) {
             animalList.add(animal);
+            animal.setId(memberId++);
             counter++;
-    }
-
-    public String seeCommands(int memberId) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("id: ");
-        sb.append(memberId);
-        E animal = getById(memberId);
-        if (animal != null) {
-            sb.append("Кличка: ");
-            sb.append(animal.getName());
-            sb.append("Тип: ");
-            sb.append(animal.getAnimalClass());
-            sb.append("Команды: ");
-            sb.append(animal.getCommands());
-            return sb.toString();
         }
-        return "Данные отсутствуют";
     }
 
-    public int getCounter() {
-        return counter;
-    }
+        public String seeCommands (int memberId){
+            StringBuilder sb = new StringBuilder();
+            sb.append("id: ");
+            sb.append(memberId);
+            E animal = getById(memberId);
+            if (animal != null) {
+                sb.append(" Кличка: ");
+                sb.append(animal.getName());
+                sb.append(" Тип: ");
+                sb.append(animal.getAnimalClass());
+                sb.append(" Команды: ");
+                sb.append(animal.getCommands() + "\n");
+                return sb.toString();
+            }
+            return "Данные отсутствуют";
+        }
 
-    public List<E> getByName(String name) {
-        List<E> res = new ArrayList<>();
-        for (E animal: animalList) {
-            if (animal.getName().equals(name)) {
-                res.add(animal);
+
+        public int getCounter () {
+            return counter;
+        }
+
+        public void remove (int animalId){
+            if (checkId(animalId)) {
+                E element = getById(animalId);
+                animalList.remove(element);
+                counter--;
             }
         }
-        return res;
-    }
 
-    public boolean remove(long animalId){
-        if (checkId(animalId)) {
-            E element = getById(animalId);
-            counter--;
-            return animalList.remove(element);
+        private boolean checkId ( int id){
+            return id < memberId && id >= 0;
         }
-        return false;
-    }
 
-    private boolean checkId(long id) {
-        return id < memberId && id >= 0;
-    }
-
-    public E getById(long id) {
-        if (checkId(id)) {
-            for (E animal: animalList) {
-                if (animal.getId() == id) {
-                    return animal;
+        public E getById ( int id){
+            if (checkId(id)) {
+                for (E animal : animalList) {
+                    if (animal.getId() == id) {
+                        return animal;
+                    }
                 }
             }
+            return null;
         }
-        return null;
-    }
 
-    public void sortByName() {
-        animalList.sort(new AnimalComparatorByName());
-    }
-
-    public void sortByBirthDate() {
-        animalList.sort(new AnimalComparatorByBirthDate());
-    }
-
-    public String getAnimalList() {
-        StringBuilder sb = new StringBuilder();
-        for (E animal: animalList) {
-            sb.append(animal);
+        public void sortByName () {
+            animalList.sort(new AnimalComparatorByName());
         }
-        return sb.toString();
+
+        public void sortByBirthDate () {
+            animalList.sort(new AnimalComparatorByBirthDate());
+        }
+
+        public String getAnimalList () {
+            StringBuilder sb = new StringBuilder();
+            for (E animal : animalList) {
+                sb.append(animal);
+            }
+            return sb.toString();
+        }
+
+        @Override
+        public String toString () {
+            return getInfo();
+        }
+
+        public String getInfo () {
+            StringBuilder sb = new StringBuilder();
+            sb.append("В питомнике ");
+            sb.append(animalList.size());
+            sb.append(" животных \n");
+            for (E animal : animalList) {
+                sb.append(animal);
+                sb.append("\n");
+            }
+            return sb.toString();
+        }
+
+        public String getInfoById (int memberId) {
+        StringBuilder sb = new StringBuilder("ID - ");
+        sb.append(memberId).append("\n").append("\n");
+        E animal = getById(memberId);
+        if (animal != null) {
+            sb.append("Тип: ").append(animal.getAnimalClass() + "\n");
+            sb.append("Кличка: ").append(animal.getName() + "\n");
+            sb.append("Дата рождения: ").append(animal.getBirthDate() + "\n");
+        }
+        if (animal.getCommands() != null) {
+            sb.append(animal.getCommands() + "n");
+            return sb.toString();
+        }
+        return "Данных нет.";
+        }
+
+        @Override
+        public Iterator<E> iterator () {
+            return new AnimalIterator<E>(animalList);
+        }
     }
 
-    @Override
-    public Iterator<E> iterator() {
-        return new AnimalIterator<>(animalList);
-    }
-}
+

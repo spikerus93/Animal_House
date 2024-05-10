@@ -8,6 +8,6 @@ public abstract class HomeAnimal extends Animal {
 
     public HomeAnimal(String name, LocalDate birthDate) {
         super(name, birthDate);
-        this.animalClass = ("Домашнее животное");
+        this.animalClass = ("Домашнее животное, Семейство: ");
     }
 }

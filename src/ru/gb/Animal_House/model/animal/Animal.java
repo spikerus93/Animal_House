@@ -6,10 +6,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal implements TreeNode {
-    private Animal animal;
-    private long id;
+public class Animal implements TreeNode<Animal> {
+    private int id;
     private String name;
+
     public String animalClass;
     private LocalDate birthDate;
     private List<String> commands;
@@ -32,15 +32,6 @@ public class Animal implements TreeNode {
         this.commands = new ArrayList<>();
     }
 
-    public Animal (String animalClass, String name, LocalDate birthDate){
-        id = -1;
-        this.animal = new Animal();
-        this.animalClass = animalClass;
-        this.name = name;
-        this.birthDate = birthDate;
-        this.commands = new ArrayList<>();
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -51,7 +42,7 @@ public class Animal implements TreeNode {
 
     public String getCommands() {
         if (!(this.commands).isEmpty()) {
-            StringBuilder sb = new StringBuilder("Команды: ");
+            StringBuilder sb = new StringBuilder();
             sb.append(this.commands);
             return sb.toString();
         }
@@ -62,7 +53,7 @@ public class Animal implements TreeNode {
         return name;
     }
 
-    public void setId (long id) {
+    public void setId (int id) {
         this.id = id;
     }
 
@@ -78,22 +69,14 @@ public class Animal implements TreeNode {
         this.birthDate = birthDate;
     }
 
-    @Override public String toString() {
-        return getInfo();
+    public void setCommands(List<String> commands) {
+        this.commands = commands;
     }
 
-    public String getInfo() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("id: ");
-        sb.append(id);
-        sb.append(" Тип: ");
-        sb.append(animalClass);
-        sb.append(" кличка: ");
-        sb.append(name);
-        sb.append(" дата рождения: ");
-        sb.append(getBirthDate());
-        sb.append(".");
-        return sb.toString();
+    @Override
+    public String toString() {
+         return "ID: " + id + ", тип: " + animalClass + ", кличка: "
+                + name + ", дата рождения: " + birthDate + "\n";
     }
 
     @Override

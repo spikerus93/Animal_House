@@ -5,19 +5,25 @@ import ru.gb.Animal_House.model.animal.animalbuilder.AnimalBuilder;
 import ru.gb.Animal_House.model.animal.tree.AnimalTree;
 import ru.gb.Animal_House.model.animal.writer.Writer;
 
-import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class Service {
 
-    private AnimalTree animalTree;
-    private AnimalBuilder builder;
+    private AnimalTree<Animal> animalTree;
+    private final AnimalBuilder builder;
     private Writer writer;
 
     public Service() {
-        animalTree = new AnimalTree();
+        animalTree = new AnimalTree<>();
+
         builder = new AnimalBuilder();
+    }
+
+    public boolean setBirthDate (int year, int month, int day) {
+        Animal animal = new Animal();
+        animal.setBirthDate(checkDate(year, month, day));
+        return animal.getBirthDate() != null;
     }
 
     public void setWriter(Writer writer) {
@@ -25,11 +31,11 @@ public class Service {
     }
 
     public boolean save() {
-        return writer.write(animalTree, "AnimalHouse.out");
+        return writer.write(animalTree, "AnimalHouse.txt");
     }
 
-    public void load() throws IOException {
-        animalTree = (AnimalTree) writer.restore("Animal_House.out");
+    public void load() {
+        animalTree = (AnimalTree<Animal>) writer.restore("AnimalHouse.txt");
     }
 
     public int counter() {
@@ -60,8 +66,9 @@ public class Service {
     }
 
     public void addCommand(int id, String command) {
-        Animal animal = (Animal) animalTree.getById(id);
+        Animal animal = animalTree.getById(id);
         animal.setCommands(command);
+        animalTree.getInfo();
     }
 
     public String seeCommands(int id) {
@@ -69,16 +76,18 @@ public class Service {
     }
 
     public boolean checkId(int id) {
-        Animal animal = (Animal) animalTree.getById(id);
+        Animal animal = animalTree.getById(id);
         return animal != null;
     }
 
     public void sortByName() {
         animalTree.sortByName();
+        getInfo();
     }
 
     public void sortByBirthDate() {
         animalTree.sortByBirthDate();
+        getInfo();
     }
 
     public String getAnimalList() {
@@ -86,11 +95,24 @@ public class Service {
     }
 
     public boolean remove(int id) {
-        Animal animal = (Animal) animalTree.getById(id);
+        Animal animal = animalTree.getById(id);
         if (animal != null) {
             animalTree.remove(id);
             return  true;
         }
         return false;
+    }
+
+    public String getInfo() {
+        return animalTree.getInfo();
+    }
+
+    public String getInfoById(int id) {
+        return animalTree.getInfoById(id);
+    }
+
+    @Override
+    public String toString() {
+        return getInfo();
     }
 }

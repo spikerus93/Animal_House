@@ -1,18 +1,18 @@
 package ru.gb.Animal_House.presenter;
 
 
+import ru.gb.Animal_House.model.animal.Animal;
 import ru.gb.Animal_House.model.animal.service.Service;
 import ru.gb.Animal_House.model.animal.writer.Writer;
 import ru.gb.Animal_House.view.View;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 public class Presenter {
 
-    private View view;
+    private final View view;
 
-    private Service service;
+    private final Service service;
 
     public Presenter(View view) {
         this.view = view;
@@ -27,7 +27,7 @@ public class Presenter {
         service.setWriter(writer);
     }
 
-    public void load() throws IOException {
+    public void load() {
         service.load();
     }
 
@@ -43,11 +43,13 @@ public class Presenter {
         return service.dateValid(year, month, day);
     }
 
-    public LocalDate setBirthDate(int year, int month, int day) {
+    public boolean setBirthDate(int year, int month, int day) {
         if (dateValid(year, month, day)) {
-            return service.checkDate(year, month, day);
+            service.setBirthDate(year, month, day);
+            getInfo();
+            return true;
         }
-        return null;
+        return false;
     }
 
     public boolean checkId(int id) {
@@ -70,6 +72,14 @@ public class Presenter {
     public void sortByBirthDate() {
         service.sortByBirthDate();
         view.printAnswer(service.getAnimalList());
+    }
+
+    public void getInfo() {
+        view.printAnswer(service.getInfo());
+    }
+
+    public void getInfoById(int id) {
+        view.printAnswer(service.getInfoById(id));
     }
 
     public boolean remove(int id) {
